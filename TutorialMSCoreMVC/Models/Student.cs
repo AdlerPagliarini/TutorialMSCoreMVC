@@ -16,6 +16,8 @@ namespace TutorialMSCoreMVC.Models
         [Column("FirstName")]
         public string FirstMidName { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime EnrollmentDate { get; set; }
 
         [Display(Name = "Full Name")]

@@ -24,7 +24,7 @@ namespace TutorialMSCoreMVC
                 try
                 {
                     var context = services.GetRequiredService<SchoolContext>();
-                    DbInitializer.Initialize(context);
+                    DbInitializer.InitializeFaseDois(context);
                 }
                 catch (Exception ex)
                 {
