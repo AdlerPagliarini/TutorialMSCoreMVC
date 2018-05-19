@@ -99,4 +99,11 @@ A chave composta garante que, embora você possa ter várias linhas para um curs
 https://docs.microsoft.com/ef/core/modeling/indexes
 
 
+7 - Criar, Editar
 
+Instrutores
+Adicionar uma página Editar para instrutores
+Quando você edita um registro de instrutor, deseja poder atualizar a atribuição de escritório do instrutor. A entidade Instructor tem uma relação um para zero ou um com a entidade OfficeAssignment, o que significa que o código deve manipular as seguintes situações:
+Se o usuário apagar a atribuição de escritório e ela originalmente tinha um valor, exclua a entidade OfficeAssignment.
+Se o usuário inserir um valor de atribuição de escritório e ele originalmente estava vazio, crie uma nova entidade OfficeAssignment.
+Se o usuário alterar o valor de uma atribuição de escritório, altere o valor em uma entidade OfficeAssignment existente.
