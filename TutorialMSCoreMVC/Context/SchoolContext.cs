@@ -14,6 +14,7 @@ namespace TutorialMSCoreMVC.Context
 
         }
 
+        public DbSet<Person> People { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Enrollment> Enrollments { get; set; }
         public DbSet<Student> Students { get; set; }
@@ -31,6 +32,7 @@ namespace TutorialMSCoreMVC.Context
             modelBuilder.Entity<Instructor>().ToTable("Instructor");
             modelBuilder.Entity<OfficeAssignment>().ToTable("OfficeAssignment");
             modelBuilder.Entity<CourseAssignment>().ToTable("CourseAssignment");
+            modelBuilder.Entity<Person>().ToTable("Person");
 
             /*chave primária composta*/
             modelBuilder.Entity<CourseAssignment>()
