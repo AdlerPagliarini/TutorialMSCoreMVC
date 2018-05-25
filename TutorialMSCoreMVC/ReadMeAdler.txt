@@ -110,3 +110,8 @@ Se o usuário alterar o valor de uma atribuição de escritório, altere o valor
 
 *Adicionar atribuições de Curso à página Editar Instrutor
 A relação entre as entidades Course e Instructor é muitos para muitos. Para adicionar e remover relações, adicione e remova entidades bidirecionalmente no conjunto de entidades de junção CourseAssignments.
+
+10 - Topicos Avançados
+Use o método DbSet.FromSql para consultas que retornam tipos de entidade. Os objetos retornados precisam ser do tipo esperado pelo objeto DbSet e são controlados automaticamente pelo contexto de banco de dados, a menos que você desative o controle.
+Use o Database.ExecuteSqlCommand para comandos que não sejam de consulta.
+Caso precise executar uma consulta que retorna tipos que não são entidades, use o ADO.NET com a conexão de banco de dados fornecida pelo EF. Os dados retornados não são controlados pelo contexto de banco de dados, mesmo se esse método é usado para recuperar tipos de entidade.
