@@ -115,3 +115,16 @@ A relação entre as entidades Course e Instructor é muitos para muitos. Para a
 Use o método DbSet.FromSql para consultas que retornam tipos de entidade. Os objetos retornados precisam ser do tipo esperado pelo objeto DbSet e são controlados automaticamente pelo contexto de banco de dados, a menos que você desative o controle.
 Use o Database.ExecuteSqlCommand para comandos que não sejam de consulta.
 Caso precise executar uma consulta que retorna tipos que não são entidades, use o ADO.NET com a conexão de banco de dados fornecida pelo EF. Os dados retornados não são controlados pelo contexto de banco de dados, mesmo se esse método é usado para recuperar tipos de entidade.
+
+
+O Entity Framework determina como uma entidade foi alterada (e, portanto, quais atualizações precisam ser enviadas ao banco de dados), comparando os valores atuais de uma entidade com os valores originais. Os valores originais são armazenados quando a entidade é consultada ou anexada. Alguns dos métodos que causam a detecção automática de alterações são os seguintes:
+DbContext.SaveChanges
+DbContext.Entry
+ChangeTracker.Entries
+Se você estiver controlando um grande número de entidades e chamar um desses métodos muitas vezes em um loop, poderá obter melhorias significativas de desempenho desativando temporariame
+_context.ChangeTracker.AutoDetectChangesEnabled = false;
+
+https://docs.microsoft.com/en-us/aspnet/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application
+
+IQueryable vs IEnumerable
+In the original version of the code, students is typed as an IQueryable object. The query isn't sent to the database until it's converted into a collection using a method such as ToList, which doesn't occur until the Index view accesses the student model. The Where method in the original code above becomes a WHERE clause in the SQL query that is sent to the database. That in turn means that only the selected entities are returned by the database. However, as a result of changing context.Students to studentRepository.GetStudents(), the students variable after this statement is an IEnumerable collection that includes all students in the database. The end result of applying the Where method is the same, but now the work is done in memory on the web server and not by the database. For queries that return large volumes of data, this can be inefficient.

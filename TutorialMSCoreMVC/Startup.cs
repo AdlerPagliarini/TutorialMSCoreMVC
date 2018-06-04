@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TutorialMSCoreMVC.Context;
+using TutorialMSCoreMVC.Repositories;
 
 namespace TutorialMSCoreMVC
 {
@@ -25,6 +26,8 @@ namespace TutorialMSCoreMVC
         {
             services.AddDbContext<SchoolContext>(options =>
                                                  options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped<IStudentRepository, StudentRepository>();
 
             services.AddMvc();
         }
