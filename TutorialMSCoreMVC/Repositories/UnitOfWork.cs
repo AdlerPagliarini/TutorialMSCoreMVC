@@ -11,15 +11,15 @@ namespace TutorialMSCoreMVC.Repositories
     public class UnitOfWork : IDisposable, IUnitOfWork
     {
         private SchoolContext _context;
-        private GenericRepository<Department> departmentRepository;
-        private GenericRepository<Course> courseRepository;
+        private IGenericRepository<Department> departmentRepository;
+        private IGenericRepository<Course> courseRepository;
 
         public UnitOfWork(SchoolContext context)
         {
             _context = context;
         }
 
-        public GenericRepository<Department> DepartmentRepository
+        public IGenericRepository<Department> DepartmentRepository
         {
             get
             {
@@ -31,7 +31,7 @@ namespace TutorialMSCoreMVC.Repositories
             }
         }
 
-        public GenericRepository<Course> CourseRepository
+        public IGenericRepository<Course> CourseRepository
         {
             get
             {

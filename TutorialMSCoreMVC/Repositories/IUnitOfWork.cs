@@ -5,8 +5,8 @@ namespace TutorialMSCoreMVC.Repositories
 {
     public interface IUnitOfWork
     {
-        GenericRepository<Course> CourseRepository { get; }
-        GenericRepository<Department> DepartmentRepository { get; }
+        IGenericRepository<Course> CourseRepository { get; }
+        IGenericRepository<Department> DepartmentRepository { get; }
 
         void Dispose();
         Task SaveAsync();
