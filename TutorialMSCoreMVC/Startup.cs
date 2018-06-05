@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TutorialMSCoreMVC.Context;
+using TutorialMSCoreMVC.Models;
 using TutorialMSCoreMVC.Repositories;
 
 namespace TutorialMSCoreMVC
@@ -28,6 +29,12 @@ namespace TutorialMSCoreMVC
                                                  options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<IStudentRepository, StudentRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            /*services.AddScoped<IRepository<IPersonDto>>((services) => {
+                var testRepo = new SetupRepo();
+                var personRepository = new Repository<PersonDto>(testRepo.PersonRepo);
+                return personRepository;
+            });*/
 
             services.AddMvc();
         }
